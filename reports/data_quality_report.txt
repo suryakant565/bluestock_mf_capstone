@@ -1,0 +1,33 @@
+DAY 1 DATA QUALITY REPORT
+
+1. Total Datasets Loaded: 10
+
+2. Total Records:
+- fund_master: 40
+- nav_history: 46,000
+- aum_by_fund_house: 90
+- monthly_sip_inflows: 48
+- category_inflows: 144
+- industry_folio_count: 21
+- scheme_performance: 40
+- investor_transactions: 32,778
+- portfolio_holdings: 322
+- benchmark_indices: 8,050
+
+3. Missing Values:
+- Only monthly_sip_inflows has missing values
+- yoy_growth_pct contains 12 null values
+- All other datasets have 0 missing values
+
+4. Duplicate Records:
+- No duplicate rows found in any dataset
+
+5. Data Types:
+- Date columns currently stored as string
+- Numeric columns correctly identified
+
+6. Data Quality Summary:
+- Data quality is good overall
+- No duplicate records
+- Minimal missing data
+- Suitable for ETL and analytics processing
