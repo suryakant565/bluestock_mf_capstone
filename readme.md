@@ -2,213 +2,222 @@
 
 ## Project Overview
 
-This project is part of the Bluestock Fintech Internship Program. The objective is to build a complete Mutual Fund Analytics Pipeline by performing data ingestion, cleaning, database loading, SQL analysis, and dashboard creation using Python, SQLite, and data visualization tools.
+This project is an end-to-end Mutual Fund Analytics platform developed as part of the Bluestock Fintech Capstone Program. The project covers data ingestion, cleaning, exploratory analysis, database design, risk analytics, investor behavior analysis, and interactive dashboard development using Power BI.
+
+## Objectives
+
+* Build a centralized mutual fund analytics database.
+* Analyze fund performance and risk metrics.
+* Study investor transaction behavior and SIP trends.
+* Create interactive Power BI dashboards.
+* Develop advanced analytics and fund recommendation capabilities.
 
 ---
 
-## Project Objectives
+## Tech Stack
 
-- Ingest and process mutual fund datasets
-- Fetch live NAV data using MFAPI
-- Clean and validate raw datasets
-- Store processed data in SQLite database
-- Perform analytical SQL queries
-- Build an interactive analytics dashboard
-- Generate business insights from mutual fund data
+* Python (Pandas, NumPy, Matplotlib)
+* SQLite
+* SQL
+* Jupyter Notebook
+* Power BI
+* Git & GitHub
 
 ---
 
 ## Project Structure
 
-```text
-BLUESTOCK_MF_CAPSTONE/
-│
+bluestock_mf_capstone/
+
 ├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── db/
-│       └── bluestock_mf.db
-│
+
+│ ├── raw/
+
+│ ├── processed/
+
+│ └── db/bluestock_mf.db
+
 ├── notebooks/
-│   ├── 01_data_ingestion.ipynb
-│   └── 02_data_cleaning.ipynb
-│
+
+│ ├── 01_data_ingestion.ipynb
+
+│ ├── 02_data_cleaning.ipynb
+
+│ ├── 03_eda_analysis.ipynb
+
+│ ├── 04_performance_analytics.ipynb
+
+│ └── 05_advanced_analytics.ipynb
+
 ├── scripts/
-│   ├── data_ingestion.py
-│   └── live_nav_fetch.py
-│
+
+│ ├── data_ingestion.py
+
+│ ├── live_nav_fetch.py
+
+│ └── recommender.py
+
 ├── sql/
-│   ├── queries.sql
-│   └── schema.sql
-│
+
+│ ├── schema.sql
+
+│ └── queries.sql
+
+├── dashboards/
+
+│ └── bluestock_mf.pbix
+
 ├── reports/
-│   ├── data_quality_report.txt
-│   └── data_dictionary.md
-│
-├── requirements.txt
-└── README.md
-```
 
----
+│ ├── var_cvar_report.csv
 
-## Datasets Used
+│ ├── sip_continuity_report.csv
 
-### 1. Fund Master
-Contains scheme information including:
-- AMFI Code
-- Fund House
-- Category
-- Expense Ratio
-- Risk Category
-- Fund Manager
+│ ├── sector_hhi_report.csv
 
-### 2. NAV History
-Contains historical Net Asset Value (NAV) data for mutual fund schemes.
+│ ├── rolling_sharpe_chart.png
 
-### 3. AUM by Fund House
-Assets Under Management data for different fund houses.
+│ └── Final_Report.pdf
 
-### 4. Monthly SIP Inflows
-Industry SIP inflow trends.
+├── README.md
 
-### 5. Category Inflows
-Investment inflows across mutual fund categories.
-
-### 6. Industry Folio Count
-Investor folio statistics.
-
-### 7. Scheme Performance
-Performance metrics and returns.
-
-### 8. Investor Transactions
-Investor transaction records including SIP, Lumpsum, and Redemption.
-
-### 9. Portfolio Holdings
-Underlying portfolio holdings of mutual funds.
-
-### 10. Benchmark Indices
-Benchmark index performance data.
-
----
-
-## Live NAV Data Integration
-
-Live NAV data was fetched using MFAPI.
-
-Schemes fetched:
-
-- HDFC Top 100
-- SBI Bluechip
-- ICICI Bluechip
-- Nippon Large Cap
-- Axis Bluechip
-- Kotak Bluechip
-
-Data fetched:
-- Date
-- NAV Value
-
----
-
-## Data Cleaning Performed
-
-### NAV History
-- Converted date columns to datetime
-- Sorted by AMFI code and date
-- Removed duplicates
-- Validated NAV > 0
-
-### Investor Transactions
-- Standardized transaction types
-- Validated transaction amounts
-- Verified KYC status values
-- Fixed date formats
-
-### Scheme Performance
-- Validated numeric return columns
-- Checked expense ratio ranges
-- Flagged anomalies
-
-### AUM Data
-- Converted dates
-- Validated AUM values
-- Removed duplicates
+└── requirements.txt
 
 ---
 
 ## Database Design
 
-SQLite database used:
+Implemented a star-schema style structure using SQLite:
 
-```text
-data/db/bluestock_mf.db
-```
+### Dimension Table
 
-### Tables
+* dim_fund
 
-#### Dimension Table
-- dim_fund
+### Fact Tables
 
-#### Fact Tables
-- fact_nav
-- fact_transactions
-- fact_performance
-- fact_aum
+* fact_aum
+* fact_nav
+* fact_performance
+* fact_transactions
+
+Database schema is available in `sql/schema.sql`.
 
 ---
 
-## Row Counts
+## Exploratory Data Analysis (EDA)
 
-| Table | Rows |
-|---------|------:|
-| dim_fund | 40 |
-| fact_nav | 46,000 |
-| fact_transactions | 32,778 |
-| fact_performance | 40 |
-| fact_aum | 90 |
+Performed:
 
----
-
-## Analytical SQL Queries
-
-Implemented:
-
-1. Top 5 Fund Houses by AUM
-2. Average NAV per Month
-3. SIP Year-over-Year Growth
-4. Transactions by State
-5. Funds with Expense Ratio < 1%
-6. Top 10 Funds by Average NAV
-7. Fund Count by Category
-8. Fund Count by Risk Category
-9. Average Expense Ratio by Category
-10. Average SIP Amount by Category
+* Missing value analysis
+* Data quality checks
+* Distribution analysis
+* Category-wise fund analysis
+* AUM trend analysis
+* Investor transaction analysis
 
 ---
 
-## Technologies Used
+## Risk & Performance Analytics
 
-- Python
-- Pandas
-- NumPy
-- SQLite
-- SQLAlchemy
-- Jupyter Notebook
-- VS Code
-- Git
-- GitHub
-- DB Browser for SQLite
+Computed key performance metrics:
+
+* Sharpe Ratio
+* Sortino Ratio
+* Alpha
+* Beta
+* Maximum Drawdown
+* CAGR
+* Volatility
 
 ---
 
-## Future Enhancements
+## Advanced Analytics
 
-- Streamlit Dashboard
-- Interactive NAV Trend Analysis
-- Investor Segmentation
-- Fund Performance Comparison
-- SIP Growth Analytics
-- Portfolio Analysis Dashboard
+### Historical VaR & CVaR
+
+* Computed 95% Value at Risk (VaR)
+* Computed Conditional Value at Risk (CVaR)
+* Generated `var_cvar_report.csv`
+
+### Rolling Sharpe Ratio
+
+* Calculated 90-Day Rolling Sharpe Ratio
+* Visualized performance stability across funds
+* Generated `rolling_sharpe_chart.png`
+
+### Investor Cohort Analysis
+
+* Grouped investors by first investment year
+* Analyzed investment patterns by cohort
+
+### SIP Continuity Analysis
+
+* Calculated transaction gaps
+* Identified At-Risk investors
+* Generated `sip_continuity_report.csv`
+
+### Fund Recommendation System
+
+* Risk-based recommendation engine
+* Supports:
+
+  * Low Risk
+  * Moderate Risk
+  * High Risk
+
+### Sector Concentration Analysis
+
+* Calculated Herfindahl-Hirschman Index (HHI)
+* Measured portfolio concentration across sectors
+* Generated `sector_hhi_report.csv`
+
+---
+
+## Power BI Dashboard
+
+Developed a 4-page interactive dashboard.
+
+### Page 1 – Market Overview
+
+* Total AUM
+* SIP Inflows
+* Investor Count
+* Fund Count
+* Industry AUM Trend
+* Fund House Comparison
+
+### Page 2 – Fund Performance & Risk
+
+* Return vs Risk Analysis
+* Alpha Ranking
+* Sharpe Ratio
+* Sortino Ratio
+* Maximum Drawdown
+* Fund Scorecard
+
+### Page 3 – Investor Analytics
+
+* Investor Demographics
+* Transaction Analysis
+* State-wise Investment Trends
+* Cohort Insights
+
+### Page 4 – SIP & Market Trends
+
+* SIP Inflow Trends
+* Benchmark Comparison
+* Category-wise Flows
+* Market Trend Analysis
+
+---
+
+## Key Insights
+
+* Risk-adjusted performance varies significantly across fund categories.
+* Several funds exhibit strong Sharpe and Sortino ratios despite moderate risk.
+* Investor cohorts formed in recent years contribute a substantial share of investments.
+* SIP continuity analysis identified investors with irregular contribution patterns.
+* HHI analysis revealed varying levels of portfolio concentration across schemes.
 
 ---
 
@@ -216,4 +225,4 @@ Implemented:
 
 Suryakant Sharma
 
-Bluestock Fintech Internship Project
+Bluestock Mutual Fund Analytics Capstone Project
