@@ -2,21 +2,29 @@
 
 ## Project Overview
 
-This project is an end-to-end Mutual Fund Analytics platform developed as part of the Bluestock Fintech Capstone Program. The project covers data ingestion, cleaning, exploratory analysis, database design, risk analytics, investor behavior analysis, and interactive dashboard development using Power BI.
+The Bluestock Mutual Fund Analytics Capstone is an end-to-end data analytics project focused on mutual fund performance evaluation, investor behavior analysis, risk assessment, and business intelligence reporting.
+
+The project combines Python, SQL, SQLite, and Power BI to transform raw mutual fund data into actionable insights through advanced analytics and interactive dashboards.
+
+---
 
 ## Objectives
 
 * Build a centralized mutual fund analytics database.
-* Analyze fund performance and risk metrics.
-* Study investor transaction behavior and SIP trends.
-* Create interactive Power BI dashboards.
-* Develop advanced analytics and fund recommendation capabilities.
+* Perform data cleaning and transformation using Python.
+* Analyze mutual fund performance using financial metrics.
+* Study investor behavior and SIP trends.
+* Calculate advanced risk measures such as VaR and CVaR.
+* Develop a risk-based mutual fund recommendation system.
+* Create interactive Power BI dashboards for decision-making.
 
 ---
 
-## Tech Stack
+## Technology Stack
 
-* Python (Pandas, NumPy, Matplotlib)
+* Python
+* Pandas
+* NumPy
 * SQLite
 * SQL
 * Jupyter Notebook
@@ -25,69 +33,57 @@ This project is an end-to-end Mutual Fund Analytics platform developed as part o
 
 ---
 
+## Data Sources
+
+The project utilizes the following datasets:
+
+* Fund Master Data
+* NAV History Data
+* Investor Transactions Data
+* Portfolio Holdings Data
+* Benchmark Index Data
+
+---
+
 ## Project Structure
 
+```text
 bluestock_mf_capstone/
-
 ├── data/
-
-│ ├── raw/
-
-│ ├── processed/
-
-│ └── db/bluestock_mf.db
-
+│   ├── raw/
+│   ├── processed/
+│   └── db/
 ├── notebooks/
-
-│ ├── 01_data_ingestion.ipynb
-
-│ ├── 02_data_cleaning.ipynb
-
-│ ├── 03_eda_analysis.ipynb
-
-│ ├── 04_performance_analytics.ipynb
-
-│ └── 05_advanced_analytics.ipynb
-
+│   ├── 01_data_ingestion.ipynb
+│   ├── 02_data_cleaning.ipynb
+│   ├── 03_eda_analysis.ipynb
+│   ├── 04_performance_analytics.ipynb
+│   └── 05_advanced_analytics.ipynb
 ├── scripts/
-
-│ ├── data_ingestion.py
-
-│ ├── live_nav_fetch.py
-
-│ └── recommender.py
-
+│   ├── data_ingestion.py
+│   ├── live_nav_fetch.py
+│   └── recommender.py
 ├── sql/
-
-│ ├── schema.sql
-
-│ └── queries.sql
-
+│   ├── schema.sql
+│   └── queries.sql
 ├── dashboards/
-
-│ └── bluestock_mf.pbix
-
+│   └── bluestock_mf.pbix
 ├── reports/
-
-│ ├── var_cvar_report.csv
-
-│ ├── sip_continuity_report.csv
-
-│ ├── sector_hhi_report.csv
-
-│ ├── rolling_sharpe_chart.png
-
-│ └── Final_Report.pdf
-
+│   ├── var_cvar_report.csv
+│   ├── sip_continuity_report.csv
+│   ├── sector_hhi_report.csv
+│   ├── rolling_sharpe_chart.png
+│   └── Final_Report.pdf
 ├── README.md
-
-└── requirements.txt
+├── requirements.txt
+└── .gitignore
+```
 
 ---
 
 ## Database Design
 
-Implemented a star-schema style structure using SQLite:
+The project uses a SQLite database with a star-schema-inspired design.
 
 ### Dimension Table
 
@@ -95,39 +91,36 @@ Implemented a star-schema style structure using SQLite:
 
 ### Fact Tables
 
-* fact_aum
 * fact_nav
+* fact_aum
 * fact_performance
 * fact_transactions
 
-Database schema is available in `sql/schema.sql`.
+---
+
+## Exploratory Data Analysis
+
+EDA was conducted to:
+
+* Validate data quality
+* Analyze investor demographics
+* Examine AUM trends
+* Study SIP inflows
+* Understand transaction patterns
 
 ---
 
-## Exploratory Data Analysis (EDA)
+## Performance Analytics
 
-Performed:
-
-* Missing value analysis
-* Data quality checks
-* Distribution analysis
-* Category-wise fund analysis
-* AUM trend analysis
-* Investor transaction analysis
-
----
-
-## Risk & Performance Analytics
-
-Computed key performance metrics:
+The following metrics were calculated:
 
 * Sharpe Ratio
 * Sortino Ratio
 * Alpha
 * Beta
-* Maximum Drawdown
 * CAGR
 * Volatility
+* Maximum Drawdown
 
 ---
 
@@ -137,92 +130,133 @@ Computed key performance metrics:
 
 * Computed 95% Value at Risk (VaR)
 * Computed Conditional Value at Risk (CVaR)
-* Generated `var_cvar_report.csv`
+
+Output:
+
+* `var_cvar_report.csv`
 
 ### Rolling Sharpe Ratio
 
 * Calculated 90-Day Rolling Sharpe Ratio
-* Visualized performance stability across funds
-* Generated `rolling_sharpe_chart.png`
+* Evaluated consistency of risk-adjusted returns
+
+Output:
+
+* `rolling_sharpe_chart.png`
 
 ### Investor Cohort Analysis
 
-* Grouped investors by first investment year
-* Analyzed investment patterns by cohort
+* Grouped investors by first transaction year
+* Analyzed investment behavior by cohort
 
 ### SIP Continuity Analysis
 
-* Calculated transaction gaps
+* Calculated average gaps between SIP transactions
 * Identified At-Risk investors
-* Generated `sip_continuity_report.csv`
+
+Output:
+
+* `sip_continuity_report.csv`
+
+### Sector HHI Analysis
+
+* Calculated Herfindahl-Hirschman Index (HHI)
+* Measured portfolio concentration risk
+
+Output:
+
+* `sector_hhi_report.csv`
 
 ### Fund Recommendation System
 
-* Risk-based recommendation engine
-* Supports:
+Developed a recommendation engine that suggests mutual funds based on:
 
-  * Low Risk
-  * Moderate Risk
-  * High Risk
-
-### Sector Concentration Analysis
-
-* Calculated Herfindahl-Hirschman Index (HHI)
-* Measured portfolio concentration across sectors
-* Generated `sector_hhi_report.csv`
+* Low Risk
+* Moderate Risk
+* High Risk
 
 ---
 
 ## Power BI Dashboard
 
-Developed a 4-page interactive dashboard.
+A four-page interactive dashboard was developed.
 
 ### Page 1 – Market Overview
 
 * Total AUM
 * SIP Inflows
-* Investor Count
 * Fund Count
+* Investor Count
 * Industry AUM Trend
 * Fund House Comparison
 
 ### Page 2 – Fund Performance & Risk
 
 * Return vs Risk Analysis
-* Alpha Ranking
 * Sharpe Ratio
 * Sortino Ratio
+* Alpha Ranking
 * Maximum Drawdown
 * Fund Scorecard
 
 ### Page 3 – Investor Analytics
 
-* Investor Demographics
-* Transaction Analysis
+* Transaction Volume Analysis
+* Investment Type Distribution
 * State-wise Investment Trends
-* Cohort Insights
+* Age Group Analysis
 
 ### Page 4 – SIP & Market Trends
 
-* SIP Inflow Trends
-* Benchmark Comparison
-* Category-wise Flows
-* Market Trend Analysis
+* SIP Inflow vs NIFTY50 Trend
+* Category Inflow Heatmap
+* Category-wise Investment Flows
 
 ---
 
-## Key Insights
+## Key Findings
 
-* Risk-adjusted performance varies significantly across fund categories.
-* Several funds exhibit strong Sharpe and Sortino ratios despite moderate risk.
-* Investor cohorts formed in recent years contribute a substantial share of investments.
-* SIP continuity analysis identified investors with irregular contribution patterns.
-* HHI analysis revealed varying levels of portfolio concentration across schemes.
+* The mutual fund industry demonstrated strong AUM growth during the analysis period.
+* SIP participation increased steadily, indicating growing investor confidence.
+* Equity-oriented schemes attracted significantly higher investments than debt schemes.
+* Risk-adjusted performance varied across mutual fund categories.
+* Investor activity was concentrated within the 26–45 age group.
+* Leading fund houses managed a substantial share of total industry assets.
+
+---
+
+## Installation
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Running the Project
+
+Execute notebooks in the following order:
+
+```text
+01_data_ingestion.ipynb
+02_data_cleaning.ipynb
+03_eda_analysis.ipynb
+04_performance_analytics.ipynb
+05_advanced_analytics.ipynb
+```
+
+Open the Power BI dashboard:
+
+```text
+dashboards/bluestock_mf.pbix
+```
 
 ---
 
 ## Author
 
-Suryakant Sharma
+**Suryakant Sharma**
 
 Bluestock Mutual Fund Analytics Capstone Project
+
+2026
